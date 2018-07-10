@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 
 import "solidity-shared-lib/contracts/Owned.sol";
@@ -35,7 +35,7 @@ contract Storage is Owned {
 
     modifier onlyAllowed(bytes32 _role) {
         if (!manager.isAllowed(msg.sender, _role)) {
-            revert("Access to the storage is not allowed");
+            revert();
         }
         _;
     }

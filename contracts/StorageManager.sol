@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 
 import "solidity-shared-lib/contracts/Owned.sol";
@@ -20,22 +20,22 @@ contract StorageManager is Owned, MultiEventsHistoryAdapter {
     mapping (address => uint) public authorised;
     mapping (bytes32 => bool) public accessRights;
 
-    function setupEventsHistory(address _eventsHistory) 
-    external 
-    onlyContractOwner 
-    returns (uint) 
+    function setupEventsHistory(address _eventsHistory)
+    external
+    onlyContractOwner
+    returns (uint)
     {
         _setEventsHistory(_eventsHistory);
         return OK;
     }
 
-    function giveAccess(address _actor, bytes32 _role) 
-    external 
-    onlyContractOwner 
-    returns (uint) 
+    function giveAccess(address _actor, bytes32 _role)
+    external
+    onlyContractOwner
+    returns (uint)
     {
-        if (!accessRights[keccak256(abi.encodePacked(_actor, _role))]) {
-            accessRights[keccak256(abi.encodePacked(_actor, _role))] = true;
+        if (!accessRights[keccak256(_actor, _role)]) {
+            accessRights[keccak256(_actor, _role)] = true;
             authorised[_actor] += 1;
             _emitAccessGiven(_actor, _role);
         }
@@ -43,13 +43,13 @@ contract StorageManager is Owned, MultiEventsHistoryAdapter {
         return OK;
     }
 
-    function blockAccess(address _actor, bytes32 _role) 
-    external 
-    onlyContractOwner 
-    returns (uint) 
+    function blockAccess(address _actor, bytes32 _role)
+    external
+    onlyContractOwner
+    returns (uint)
     {
-        if (accessRights[keccak256(abi.encodePacked(_actor, _role))]) {
-            delete accessRights[keccak256(abi.encodePacked(_actor, _role))];
+        if (accessRights[keccak256(_actor, _role)]) {
+            delete accessRights[keccak256(_actor, _role)];
             authorised[_actor] -= 1;
             if (authorised[_actor] == 0) {
                 delete authorised[_actor];
@@ -60,18 +60,18 @@ contract StorageManager is Owned, MultiEventsHistoryAdapter {
         return OK;
     }
 
-    function isAllowed(address _actor, bytes32 _role) 
-    public 
-    view 
-    returns (bool) 
+    function isAllowed(address _actor, bytes32 _role)
+    public
+    view
+    returns (bool)
     {
-        return accessRights[keccak256(abi.encodePacked(_actor, _role))] || (this == _actor);
+        return accessRights[keccak256(_actor, _role)] || (this == _actor);
     }
 
-    function hasAccess(address _actor) 
-    public 
-    view 
-    returns (bool) 
+    function hasAccess(address _actor)
+    public
+    view
+    returns (bool)
     {
         return (authorised[_actor] > 0) || (this == _actor);
     }

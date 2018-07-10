@@ -15,12 +15,12 @@
     "testrpc": "npx ganache-cli -g 1 --gasLimit 8000000 --trace_request true | grep -Ev \"FilterSubprovider|eth_getFilterChanges\""
   },
   "dependencies": {
-    "solidity-shared-lib": "chronobank/solidity-shared-lib#v0.2.1",
-    "solidity-eventshistory-lib": "chronobank/solidity-eventshistory-lib#develop"
+    "solidity-shared-lib": "alesanro/solidity-shared-lib#solc-downgrade-v0.4.21",
+    "solidity-eventshistory-lib": "alesanro/solidity-eventshistory-lib#solc-downgrade-v0.4.21"
   },
   "devDependencies": {
-    "ganache-cli": "^6.1.4",
-    "truffle": "^4.1.13",
+    "ganache-cli": "6.1.0",
+    "truffle": "4.1.5",
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",

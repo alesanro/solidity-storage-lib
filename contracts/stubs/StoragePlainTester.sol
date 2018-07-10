@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 
 import "../StorageAdapter.sol";
@@ -18,7 +18,7 @@ contract StoragePlainTester is StorageAdapter {
     StorageInterface.Bool boolVar;
     StorageInterface.Bytes32 bytes32Var;
 
-    constructor(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
+    function StoragePlainTester(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
     }
 
     function reinitPlain() public {

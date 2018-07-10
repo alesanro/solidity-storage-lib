@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 
 import "../StorageAdapter.sol";
@@ -48,7 +48,7 @@ contract StorageMappingTester is StorageAdapter {
     StorageInterface.UIntAddressAddressBoolMapping uIntAddressAddressBoolMappingVar;
     StorageInterface.UIntUIntUIntBytes32Mapping uIntUIntUIntBytes32MappingVar;
 
-    constructor(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
+    function StorageMappingTester(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
     }
 
     function reinitMapping() public {
@@ -123,7 +123,7 @@ contract StorageMappingTester is StorageAdapter {
     function getUIntUIntMapping(uint _key) public view returns (uint) {
         return store.get(uIntUIntMappingVar, _key);
     }
-    
+
     function setUIntBytes32Mapping(uint _key, bytes32 _value) external {
         store.set(uIntBytes32MappingVar, _key, _value);
     }
@@ -203,7 +203,7 @@ contract StorageMappingTester is StorageAdapter {
     function getBytes32AddressMapping(bytes32 _key) public view returns (address) {
         return store.get(bytes32AddressMappingVar, _key);
     }
-    
+
     function setAddressAddressUInt8Mapping(address _key, address _key2, uint8 _value) external {
         store.set(addressAddressUInt8MappingVar, _key, _key2, _value);
     }
@@ -291,7 +291,7 @@ contract StorageMappingTester is StorageAdapter {
     function getUIntUIntAddressMapping(uint _key, uint _key2) public view returns (address) {
         return store.get(uIntUIntAddressMappingVar, _key, _key2);
     }
-    
+
     function setUIntUIntBytes32Mapping(uint _key, uint _key2, bytes32 _value) external {
         store.set(uIntUIntBytes32MappingVar, _key, _key2, _value);
     }

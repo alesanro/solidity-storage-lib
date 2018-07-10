@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-pragma solidity ^0.4.23;
+pragma solidity ^0.4.21;
 
 
 import "../StorageAdapter.sol";
@@ -25,7 +25,7 @@ contract StorageCollectionsTester is StorageAdapter {
     StorageInterface.AddressOrderedSetMapping addressOrderedSetMappingVar;
     StorageInterface.UIntOrderedSetMapping uIntOrderedSetMappingVar;
 
-    constructor(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
+    function StorageCollectionsTester(Storage _store, bytes32 _crate) StorageAdapter(_store, _crate) public {
     }
 
     function reinitCollections() public {
@@ -44,8 +44,8 @@ contract StorageCollectionsTester is StorageAdapter {
         uIntOrderedSetMappingVar.init("uosmv");
     }
 
-    /* Collections */ 
-    
+    /* Collections */
+
     /* Set */
 
     function addSet(bytes32 _value) external {
